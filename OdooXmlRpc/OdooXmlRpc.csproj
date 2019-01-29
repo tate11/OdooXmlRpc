@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{30A843B6-482C-4B21-9567-A85339DCD245}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>OdooXmlRpc</RootNamespace>
+    <AssemblyName>OdooXmlRpc</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CookComputing.XmlRpcV2, Version=3.0.0.0, Culture=neutral, PublicKeyToken=a7d6e17aa302004d, processorArchitecture=MSIL">
+      <HintPath>..\packages\xmlrpcnet.3.0.0.266\lib\net20\CookComputing.XmlRpcV2.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Odoo\OdooApi\IOdooCommonRpc.cs" />
+    <Compile Include="Odoo\OdooApi\IOdooObjectRpc.cs" />
+    <Compile Include="Odoo\OdooApi\OdooAPI.cs" />
+    <Compile Include="Odoo\OdooApi\OdooBaseDataModel.cs" />
+    <Compile Include="Odoo\OdooApi\OdooConnectionCredentials.cs" />
+    <Compile Include="Odoo\OdooApi\OdooFilter.cs" />
+    <Compile Include="Odoo\OdooApi\OdooFilterValue.cs" />
+    <Compile Include="Odoo\OdooApi\OdooModel.cs" />
+    <Compile Include="Odoo\OdooApi\OdooRecord.cs" />
+    <Compile Include="Odoo\OdooData\OdooAccountData.cs" />
+    <Compile Include="Odoo\OdooData\OdooAccountMoveData.cs" />
+    <Compile Include="Odoo\OdooData\OdooAccountMovementLineData.cs" />
+    <Compile Include="Odoo\OdooData\OdooAccountTypeData.cs" />
+    <Compile Include="Odoo\OdooData\OdooResCurrencyData.cs" />
+    <Compile Include="Odoo\OdooData\OdooResPartnerData.cs" />
+    <Compile Include="Odoo\OdooEntity\IEntity.cs" />
+    <Compile Include="Odoo\OdooEntity\OdooAccountMove.cs" />
+    <Compile Include="Odoo\OdooEntity\OdooAccountMovementLine.cs" />
+    <Compile Include="Odoo\OdooEntity\OdooBaseEntity.cs" />
+    <Compile Include="Odoo\OdooEntity\OdooResCurrency.cs" />
+    <Compile Include="Odoo\OdooEntity\OdooResPartner.cs" />
+    <Compile Include="Odoo\OdooMapping\IOdooBaseMap.cs" />
+    <Compile Include="Odoo\OdooMapping\OdooAccountMoveLineMap.cs" />
+    <Compile Include="Odoo\OdooMapping\OdooAccountMoveMap.cs" />
+    <Compile Include="Odoo\OdooMapping\OdooBaseMap.cs" />
+    <Compile Include="Odoo\OdooMapping\OdooResCurrencyMap.cs" />
+    <Compile Include="Odoo\OdooMapping\OdooResPartnerMap.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
