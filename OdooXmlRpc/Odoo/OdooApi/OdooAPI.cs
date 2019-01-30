@@ -47,6 +47,7 @@ namespace OdooXmlRpc.Odoo.OdooApi
             _objectRpc = XmlRpcProxyGen.Create<IOdooObjectRpc>();
             _objectRpc.Url = _credentials.ObjectUrl;
             _objectRpc.NonStandard = XmlRpcNonStandard.AllowStringFaultCode;
+            _objectRpc.EnableCompression = false;
             return true;
         }
 
@@ -64,6 +65,11 @@ namespace OdooXmlRpc.Odoo.OdooApi
         public int[] Search(string model, object[] filter, int? offset = null, int? limit = null)
         {
             return _objectRpc.search(_credentials.DbName, _credentials.UserId, _credentials.DbPassword, model, "search", filter, offset, limit);
+        }
+
+        public object[] SearchAndRead(string model, object[] filter, object[] fields, int? offset = null, int? limit = null)
+        {
+            return _objectRpc.search_read(_credentials.DbName, _credentials.UserId, _credentials.DbPassword, model, "search_read", filter, fields, offset, limit);
         }
 
         public int Count(string model, object[] filter)
@@ -91,9 +97,14 @@ namespace OdooXmlRpc.Odoo.OdooApi
             return _objectRpc.exec_workflow(_credentials.DbName, _credentials.UserId, _credentials.DbPassword, model, action, id);
         }
 
+        public string Render_Report(string report, int id)
+        {
+            return _objectRpc.render_report(_credentials.DbName, _credentials.UserId, _credentials.DbPassword, report, id);
+        }
+
+
         public OdooModel GetModel(string model)
         {
-            // TODO : check if model exists
             return new OdooModel(model, this);
         }
     }

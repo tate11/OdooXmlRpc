@@ -14,7 +14,6 @@ namespace OdooXmlRpc.Odoo.OdooApi
         private readonly string _modelName;
 
         public List<string> FieldNames { get; set; }
-
         public OdooFilter Filter { get; set; }
 
         private List<OdooRecord> _odooRecords;
@@ -155,8 +154,7 @@ namespace OdooXmlRpc.Odoo.OdooApi
 
                 threadList.Add(t);
                 t.Start(new ThreadPayload(_model, startIndex, requestSize, threadCountSize));
-                t.Join();
-
+           
                 startIndex += threadCountSize;
             }
 

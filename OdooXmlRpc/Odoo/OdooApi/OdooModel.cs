@@ -22,8 +22,9 @@ namespace OdooXmlRpc.Odoo.OdooApi
         {
             List<OdooRecord> records = new List<OdooRecord>();
 
-            int[] ids = _api.Search(_modelName, filter, offset, limit);
-            object[] result = _api.Read(_modelName, ids, _fields.ToArray());
+            //int[] ids = _api.Search(_modelName, filter, offset, limit);
+
+            object[] result = _api.SearchAndRead(_modelName, filter, _fields.ToArray(), offset, limit);
 
             foreach (object entry in result)
             {
