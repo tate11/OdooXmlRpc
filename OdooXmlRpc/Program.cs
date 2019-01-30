@@ -1,7 +1,6 @@
-﻿using OdooXmlRpc.Odoo.OdooApi;
+﻿using OdooXmlRpc.Odoo.Odoo;
 using OdooXmlRpc.Odoo.OdooData;
 using System;
-using System.Globalization;
 using System.Linq;
 
 namespace OdooXmlRpc
@@ -11,16 +10,18 @@ namespace OdooXmlRpc
         static void Main(string[] args)
         {
 
-        
             var cred = new OdooConnectionCredentials(
                 "url",
                 "dbname",
                 "user",
                 "password");
 
-            var api = new OdooApi(cred);
+            var api = new Odoo.Odoo.OdooRpc(cred);
 
-            var entity = new OdooResPartnerData(api);
+
+            var context = new OdooContext(api);
+
+            var entity = context.ResPartner;
 
             //entity.Filter.Equal("code", "10201002");
 
@@ -40,10 +41,7 @@ namespace OdooXmlRpc
 
             //var data1 = entity.ExecuteAsync(5, 10);
 
-
             //var data2 = entity.ExecuteThread(10, 500);
-
-
 
             Console.WriteLine("Dakika:{0} - Saniye:{1}",dif.TotalMinutes,dif.TotalSeconds);
 

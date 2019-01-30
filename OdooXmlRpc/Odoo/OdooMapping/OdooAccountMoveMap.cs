@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using OdooXmlRpc.Odoo.OdooApi;
+using OdooXmlRpc.Odoo.Odoo;
 using OdooXmlRpc.Odoo.OdooEntity;
 
 namespace OdooXmlRpc.Odoo.OdooMapping

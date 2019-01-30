@@ -1,21 +1,26 @@
-﻿using System;
+﻿using CookComputing.XmlRpc;
 using System.Collections.Generic;
 using System.Linq;
-using CookComputing.XmlRpc;
 
-namespace OdooXmlRpc.Odoo.OdooApi
+namespace OdooXmlRpc.Odoo.Odoo
 {
-    public class OdooModel
+    public class OdooModelRpc
     {
         private readonly string _modelName;
-        private readonly OdooApi _api;
+        private readonly OdooRpc _api;
         private readonly List<string> _fields;
 
-        public OdooModel(string modelName, OdooApi api)
+        public OdooModelRpc(string modelName, OdooRpc api)
         {
             _api = api;
             _modelName = modelName;
             _fields = new List<string>();
+        }
+
+        public int Count(object[] filter)
+        {
+            int count = _api.Count(_modelName, filter);
+            return count;
         }
 
         public List<OdooRecord> SearchAndRead(object[] filter, int? offset = null, int? limit = null)
@@ -44,13 +49,7 @@ namespace OdooXmlRpc.Odoo.OdooApi
 
             return records;
         }
-
-        public int Count(object[] filter)
-        {
-            int count = _api.Count(_modelName, filter);
-            return count;
-        }
-
+        
         public List<OdooRecord> Search(object[] filter)
         {
             int[] ids = _api.Search(_modelName, filter);

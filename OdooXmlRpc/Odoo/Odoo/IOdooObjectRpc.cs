@@ -1,7 +1,7 @@
 ﻿using System;
 using CookComputing.XmlRpc;
 
-namespace OdooXmlRpc.Odoo.OdooApi
+namespace OdooXmlRpc.Odoo.Odoo
 {
     [XmlRpcUrl("object")]
     public interface IOdooObjectRpc : IXmlRpcProxy

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace OdooXmlRpc.Odoo.OdooApi
+namespace OdooXmlRpc.Odoo.Odoo
 {
     public class OdooConnectionCredentials
     {

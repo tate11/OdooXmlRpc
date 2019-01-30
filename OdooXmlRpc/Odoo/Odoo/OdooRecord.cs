@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using CookComputing.XmlRpc;
 
-namespace OdooXmlRpc.Odoo.OdooApi
+namespace OdooXmlRpc.Odoo.Odoo
 {
     public class OdooRecord
     {
-        private readonly OdooApi _api;
+        private readonly OdooRpc _api;
         private readonly string _model;
         private readonly Dictionary<string, object> _fields = new Dictionary<string, object>();
         private readonly List<string> _modifiedFields = new List<string>();
         int _id = -1;
 
-        public OdooRecord(OdooApi api, string model, int id)
+        public OdooRecord(OdooRpc api, string model, int id)
         {
             _model = model;
             _api = api;

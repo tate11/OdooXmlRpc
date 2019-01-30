@@ -46,22 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Odoo\OdooApi\IOdooCommonRpc.cs" />
-    <Compile Include="Odoo\OdooApi\IOdooObjectRpc.cs" />
-    <Compile Include="Odoo\OdooApi\OdooAPI.cs" />
-    <Compile Include="Odoo\OdooApi\OdooBaseDataModel.cs" />
-    <Compile Include="Odoo\OdooApi\OdooConnectionCredentials.cs" />
-    <Compile Include="Odoo\OdooApi\OdooFilter.cs" />
-    <Compile Include="Odoo\OdooApi\OdooFilterValue.cs" />
-    <Compile Include="Odoo\OdooApi\OdooModel.cs" />
-    <Compile Include="Odoo\OdooApi\OdooRecord.cs" />
-    <Compile Include="Odoo\OdooData\OdooAccountData.cs" />
-    <Compile Include="Odoo\OdooData\OdooAccountMoveData.cs" />
-    <Compile Include="Odoo\OdooData\OdooAccountMovementLineData.cs" />
-    <Compile Include="Odoo\OdooData\OdooAccountTypeData.cs" />
-    <Compile Include="Odoo\OdooData\OdooResCurrencyData.cs" />
-    <Compile Include="Odoo\OdooData\OdooResPartnerData.cs" />
+    <Compile Include="Odoo\Odoo\IOdooCommonRpc.cs" />
+    <Compile Include="Odoo\Odoo\IOdooObjectRpc.cs" />
+    <Compile Include="Odoo\Odoo\OdooRpc.cs" />
+    <Compile Include="Odoo\OdooData\OdooDataService.cs" />
+    <Compile Include="Odoo\Odoo\OdooConnectionCredentials.cs" />
+    <Compile Include="Odoo\Odoo\OdooRpcFilter.cs" />
+    <Compile Include="Odoo\Odoo\OdooRpcFilterValue.cs" />
+    <Compile Include="Odoo\Odoo\OdooModelRpc.cs" />
+    <Compile Include="Odoo\Odoo\OdooRecord.cs" />
+    <Compile Include="Odoo\OdooData\OdooContext.cs" />
     <Compile Include="Odoo\OdooEntity\IEntity.cs" />
+    <Compile Include="Odoo\OdooEntity\OdooAccount.cs" />
     <Compile Include="Odoo\OdooEntity\OdooAccountMove.cs" />
     <Compile Include="Odoo\OdooEntity\OdooAccountMovementLine.cs" />
     <Compile Include="Odoo\OdooEntity\OdooBaseEntity.cs" />

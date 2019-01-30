@@ -1,28 +1,29 @@
-﻿using System;
+﻿using OdooXmlRpc.Odoo.Odoo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace OdooXmlRpc.Odoo.OdooApi
+namespace OdooXmlRpc.Odoo.OdooData
 {
-    public abstract class OdooBaseDataModel
+    public class OdooDataService
     {
-        private readonly OdooApi _odooApi;
-        private OdooModel _model;
+        private readonly OdooRpc _odooApi;
+        private OdooModelRpc _model;
         private readonly string _modelName;
 
         public List<string> FieldNames { get; set; }
-        public OdooFilter Filter { get; set; }
+        public OdooRpcFilter Filter { get; set; }
 
         private List<OdooRecord> _odooRecords;
 
-        public OdooBaseDataModel(OdooApi odooApi, string modelName)
+        public OdooDataService(OdooRpc odooApi, string modelName)
         {
             _odooApi = odooApi;
             _modelName = modelName;
-            Filter = new OdooFilter();
+            Filter = new OdooRpcFilter();
             FieldNames = new List<string>();
         }
 
@@ -154,7 +155,7 @@ namespace OdooXmlRpc.Odoo.OdooApi
 
                 threadList.Add(t);
                 t.Start(new ThreadPayload(_model, startIndex, requestSize, threadCountSize));
-           
+
                 startIndex += threadCountSize;
             }
 
@@ -266,13 +267,13 @@ namespace OdooXmlRpc.Odoo.OdooApi
             return _model.Count(Filter.ToArray());
         }
 
-        public OdooBaseDataModel AddField(string fieldName)
+        public OdooDataService AddField(string fieldName)
         {
             FieldNames.Add(fieldName);
             return this;
         }
 
-        public OdooBaseDataModel AddFields(List<string> fieldsName)
+        public OdooDataService AddFields(List<string> fieldsName)
         {
             FieldNames.AddRange(fieldsName);
             return this;
@@ -281,12 +282,12 @@ namespace OdooXmlRpc.Odoo.OdooApi
 
     class ThreadPayload
     {
-        public OdooModel Model { get; set; }
+        public OdooModelRpc Model { get; set; }
         public int StartIndex { get; set; }
         public int RequestSize { get; set; }
         public int ThreadCountSize { get; set; }
 
-        public ThreadPayload(OdooModel model, int startIndex, int requestSize, int threadCountSize)
+        public ThreadPayload(OdooModelRpc model, int startIndex, int requestSize, int threadCountSize)
         {
             StartIndex = startIndex;
             Model = model;

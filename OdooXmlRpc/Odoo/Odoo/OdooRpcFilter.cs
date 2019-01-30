@@ -1,120 +1,120 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace OdooXmlRpc.Odoo.OdooApi
+namespace OdooXmlRpc.Odoo.Odoo
 {
-    public class OdooFilter : ArrayList
+    public class OdooRpcFilter : ArrayList
     {
-        public OdooFilter Equal(string fieldName, object value)
+        public OdooRpcFilter Equal(string fieldName, object value)
         {
             var field = new object[] { fieldName, "=", value };
             Add(field);
             return this;
         }
 
-        public OdooFilter Or()
+        public OdooRpcFilter Or()
         {
             Add("|");
             return this;
         }
 
-        public OdooFilter Not()
+        public OdooRpcFilter Not()
         {
             Add("!");
             return this;
         }
 
-        public OdooFilter And()
+        public OdooRpcFilter And()
         {
             Add("&");
             return this;
         }
 
-        public OdooFilter ILike(string fieldName, object value)
+        public OdooRpcFilter ILike(string fieldName, object value)
         {
             var field = new object[] { fieldName, "ilike", value };
             Add(field);
             return this;
         }
 
-        public OdooFilter Like(string fieldName, object value)
+        public OdooRpcFilter Like(string fieldName, object value)
         {
             var field = new object[] { fieldName, "like", value };
             Add(field);
             return this;
         }
 
-        public OdooFilter NotLike(string fieldName, object value)
+        public OdooRpcFilter NotLike(string fieldName, object value)
         {
             var field = new object[] { fieldName, "not like", value };
             Add(field);
             return this;
         }
 
-        public OdooFilter NotEqual(string fieldName, object value)
+        public OdooRpcFilter NotEqual(string fieldName, object value)
         {
             var field = new object[] { fieldName, "!=", value };
             Add(field);
             return this;
         }
 
-        public OdooFilter GreaterThan(string fieldName, object value)
+        public OdooRpcFilter GreaterThan(string fieldName, object value)
         {
             var field = new object[] { fieldName, ">", value };
             Add(field);
             return this;
         }
 
-        public OdooFilter GreaterThanOrEqual(string fieldName, object value)
+        public OdooRpcFilter GreaterThanOrEqual(string fieldName, object value)
         {
             var field = new object[] { fieldName, ">=", value };
             Add(field);
             return this;
         }
 
-        public OdooFilter LessThan(string fieldName, object value)
+        public OdooRpcFilter LessThan(string fieldName, object value)
         {
             var field = new object[] { fieldName, "<", value };
             Add(field);
             return this;
         }
 
-        public OdooFilter LessThanOrEqual(string fieldName, object value)
+        public OdooRpcFilter LessThanOrEqual(string fieldName, object value)
         {
             var field = new object[] { fieldName, "<=", value };
             Add(field);
             return this;
         }
 
-        public OdooFilter Between(string fieldName, object value1, object value2)
+        public OdooRpcFilter Between(string fieldName, object value1, object value2)
         {
             var field = new object[] { fieldName, "between", value1, "and", value2 };
             Add(field);
             return this;
         }
 
-        public OdooFilter In(string fieldName, OdooFilterValue value)
+        public OdooRpcFilter In(string fieldName, OdooRpcFilterValue value)
         {
             var field = new object[] { fieldName, "in", value.ToArray() };
             Add(field);
             return this;
         }
 
-        public OdooFilter In(string fieldName, object[] values)
+        public OdooRpcFilter In(string fieldName, object[] values)
         {
             var field = new object[] { fieldName, "in", values };
             Add(field);
             return this;
         }
 
-        public OdooFilter In(string fieldName, List<object> values)
+        public OdooRpcFilter In(string fieldName, List<object> values)
         {
             var field = new object[] { fieldName, "in", values.ToArray() };
             Add(field);
             return this;
         }
 
-        public OdooFilter In(string fieldName, int[] values)
+        public OdooRpcFilter In(string fieldName, int[] values)
         {
             var field = new object[] { fieldName, "in", values };
             Add(field);
@@ -122,35 +122,35 @@ namespace OdooXmlRpc.Odoo.OdooApi
         }
 
 
-        public OdooFilter NotIn(string fieldName, OdooFilterValue value)
+        public OdooRpcFilter NotIn(string fieldName, OdooRpcFilterValue value)
         {
             var field = new object[] { fieldName, "not in", value.ToArray() };
             Add(field);
             return this;
         }
 
-        public OdooFilter NotIn(string fieldName, object[] values)
+        public OdooRpcFilter NotIn(string fieldName, object[] values)
         {
             var field = new object[] { fieldName, "not in", values };
             Add(field);
             return this;
         }
 
-        public OdooFilter NotIn(string fieldName, List<object> values)
+        public OdooRpcFilter NotIn(string fieldName, List<object> values)
         {
             var field = new object[] { fieldName, "not in", values.ToArray() };
             Add(field);
             return this;
         }
 
-        public OdooFilter NotIn(string fieldName, int[] values)
+        public OdooRpcFilter NotIn(string fieldName, int[] values)
         {
             var field = new object[] { fieldName, "not in", values };
             Add(field);
             return this;
         }
 
-        public OdooFilter ChildOf(string fieldName, string values)
+        public OdooRpcFilter ChildOf(string fieldName, string values)
         {
             var field = new object[] { fieldName, "child_of", values };
             Add(field);

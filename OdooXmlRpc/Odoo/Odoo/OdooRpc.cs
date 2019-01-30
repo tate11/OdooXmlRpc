@@ -1,17 +1,17 @@
-﻿using System.Net;
+﻿using CookComputing.XmlRpc;
+using System.Net;
 using System.Security.Cryptography.X509Certificates;
-using CookComputing.XmlRpc;
 
-namespace OdooXmlRpc.Odoo.OdooApi
+namespace OdooXmlRpc.Odoo.Odoo
 {
-    public class OdooApi
+    public class OdooRpc
     {
         private readonly OdooConnectionCredentials _credentials;
         private readonly WebProxy _networkProxy;
         private readonly bool _serverCertificateValidation;
         private IOdooObjectRpc _objectRpc;
 
-        public OdooApi(OdooConnectionCredentials credentials, bool immediateLogin = true, WebProxy networkProxy = null, bool serverCertificateValidation = true)
+        public OdooRpc(OdooConnectionCredentials credentials, bool immediateLogin = true, WebProxy networkProxy = null, bool serverCertificateValidation = true)
         {
             _serverCertificateValidation = serverCertificateValidation;
             _networkProxy = networkProxy;
@@ -103,9 +103,9 @@ namespace OdooXmlRpc.Odoo.OdooApi
         }
 
 
-        public OdooModel GetModel(string model)
+        public OdooModelRpc GetModel(string model)
         {
-            return new OdooModel(model, this);
+            return new OdooModelRpc(model, this);
         }
     }
 }
