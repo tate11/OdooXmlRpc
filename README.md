@@ -14,7 +14,7 @@ Features
 - Copyright: 2019 İsmail Eski <ismaileski@gmail.com>
 - Repository: https://github.com/ieski/OdooXmlRpc
 - License: LGPL 3
-- Language: C#, .NET 4.5
+- Language: C#, .NET 4.6
 - IDE: Visual Studio 2017
 - Version: v1.0.0
 
