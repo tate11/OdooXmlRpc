@@ -1,26 +1,39 @@
-﻿using System.Collections.Generic;
-using CookComputing.XmlRpc;
+﻿using CookComputing.XmlRpc;
+using System.Collections.Generic;
+using System.Dynamic;
 
 namespace OdooXmlRpc.Odoo.Odoo
 {
-    public class OdooRecord
+    public class OdooRecord: DynamicObject
     {
         private readonly OdooRpc _api;
         private readonly string _model;
+
         private readonly Dictionary<string, object> _fields = new Dictionary<string, object>();
+
         private readonly List<string> _modifiedFields = new List<string>();
-        int _id = -1;
 
         public OdooRecord(OdooRpc api, string model, int id)
         {
             _model = model;
             _api = api;
-            _id = id;
+            Id = id;
         }
 
         public Dictionary<string, object> GetFields()
         {
             return _fields;
+        }
+
+        public override bool TryGetMember(GetMemberBinder binder, out object result)
+        {
+            return _fields.TryGetValue(binder.Name, out result);
+        }
+
+        public override bool TrySetMember(SetMemberBinder binder, object value)
+        {
+            _fields[binder.Name] = value;
+            return true;
         }
 
         public bool SetValue(string field, object value)
@@ -56,35 +69,29 @@ namespace OdooXmlRpc.Odoo.Odoo
             }
         }
 
-        public int Id
-        {
-            get
-            {
-                return _id;
-            }
-        }
+        public int Id { get; private set; } = -1;
 
         public void Save()
         {
             XmlRpcStruct values = new XmlRpcStruct();
 
-            if (_id >= 0)
+            if (Id >= 0)
             {
-                foreach (string field in _modifiedFields)
+                foreach (var field in _modifiedFields)
                 {
                     values[field] = _fields[field];
                 }
 
-                _api.Write(_model, new int[1] { _id }, values);
+                _api.Write(_model, new int[1] { Id }, values);
             }
             else
             {
-                foreach (string field in _fields.Keys)
+                foreach (var field in _fields.Keys)
                 {
                     values[field] = _fields[field];
                 }
 
-                _id = _api.Create(_model, values);
+                Id = _api.Create(_model, values);
             }
         }
     }

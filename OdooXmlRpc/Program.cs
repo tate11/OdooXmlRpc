@@ -1,7 +1,6 @@
 ﻿using OdooXmlRpc.Odoo.Odoo;
 using OdooXmlRpc.Odoo.OdooData;
 using System;
-using System.Linq;
 
 namespace OdooXmlRpc
 {
@@ -11,42 +10,36 @@ namespace OdooXmlRpc
         {
 
             var cred = new OdooConnectionCredentials(
-                "url",
-                "dbname",
-                "user",
-                "password");
+                "serverUrl",
+                "dbName",
+                "dbUser",
+                "dbPassword");
 
             var api = new Odoo.Odoo.OdooRpc(cred);
-
-
             var context = new OdooContext(api);
 
-            var entity = context.ResPartner;
 
-            //entity.Filter.Equal("code", "10201002");
+            var resPartner = context.ResPartner;
 
-            entity.Filter.ILike("property_account_payable", "320");
+            //entity.Filter.Equal("vat", "TR28163539052");
 
-            entity.AddField("id")
+            resPartner
+                .AddField("id")
                 .AddField("name")
-                .AddField("property_account_receivable");
+                .AddField("child_ids");
 
-            var start = DateTime.Now;
 
-            var data = entity.Execute(true,1,10);
+            var data = resPartner.Execute(true,1,100);
 
-            var end = DateTime.Now;
-
-            var dif = end - start;
+            //Dynamic Access Entity
+            data.ForEach(x =>
+            {
+                Console.WriteLine(((dynamic)x).name);
+            });
 
             //var data1 = entity.ExecuteAsync(5, 10);
 
             //var data2 = entity.ExecuteThread(10, 500);
-
-            Console.WriteLine("Dakika:{0} - Saniye:{1}",dif.TotalMinutes,dif.TotalSeconds);
-
-            var a = entity.GetRecords();
-            var b = a.Distinct().ToList();
         }
     }
 }
