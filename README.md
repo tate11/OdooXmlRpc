@@ -26,7 +26,7 @@ Links
 - https://en.wikipedia.org/wiki/XML-RPC
 
 
-Example Create Partner and Image
+Example Query ResPartner
 --------------------------------
 - Source:
 
