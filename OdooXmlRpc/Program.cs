@@ -21,7 +21,7 @@ namespace OdooXmlRpc
 
             var resPartner = context.ResPartner;
 
-            //entity.Filter.Equal("vat", "TR28163539052");
+            resPartner.Filter.Equal("vat", "TR28163539052");
 
             resPartner
                 .AddField("id")
@@ -31,15 +31,19 @@ namespace OdooXmlRpc
 
             var data = resPartner.Execute(true,1,100);
 
+            //Result to XML
+            var xml = resPartner.ToXml();
+
             //Dynamic Access Entity
             data.ForEach(x =>
             {
                 Console.WriteLine(((dynamic)x).name);
             });
 
-            //var data1 = entity.ExecuteAsync(5, 10);
+            //Thread
+            var data1 = resPartner.ExecuteAsync(5, 10);
 
-            //var data2 = entity.ExecuteThread(10, 500);
+            var data2 = resPartner.ExecuteThread(10, 500);
         }
     }
 }
